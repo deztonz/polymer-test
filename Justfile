@@ -81,6 +81,14 @@ do-it:
     just send-packet optimism
     echo "You've done it!"
 
+do-it-base:
+    echo "Running the full E2E flow..."
+    just set-contracts optimism XCounterUC true && just set-contracts base XCounterUC true
+    just deploy base optimism
+    just sanity-check
+    just send-packet base
+    echo "You've done it!"
+
 # Clean up the environment by removing the artifacts and cache folders and running the forge clean command
 # Usage: just clean
 clean:
